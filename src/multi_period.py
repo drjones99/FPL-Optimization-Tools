@@ -28,8 +28,8 @@ def get_data(team_id, gw, seed_val, horizon, randomized):
         rng = np.random.default_rng(seed = seed_val)
         gws = list(range(gw, min(39, gw+horizon)))
         for w in gws:
-            noise = merged_data[f"{w}_Pts"] * (92 - merged_data[f"{w}_xMins"]) / 134 * rng.standard_normal(size=len(merged_data))
-            merged_data[f"{w}_Pts"] = merged_data[f"{w}_Pts"] + noise
+            noise = merged_data[f"{w+1}_Pts"] * (92 - merged_data[f"{w+1}_xMins"]) / 134 * rng.standard_normal(size=len(merged_data))
+            merged_data[f"{w+1}_Pts"] = merged_data[f"{w+1}_Pts"] + noise
 
     next_gw = int(review_data.keys()[5].split('_')[0])
     type_data = pd.DataFrame(fpl_data['element_types']).set_index(['id'])
